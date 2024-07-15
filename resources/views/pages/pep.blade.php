@@ -1,4 +1,3 @@
-
 @extends('master')
 
 @section('content')
@@ -8,7 +7,7 @@
         <div class="w-full md:max-w-6xl bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                    Family Member Details
+                    Pep
                 </h1>
                 <form class="space-y-4 md:space-y-6" action="{{route('family-store')}}" method="POST">
                   @csrf
@@ -90,11 +89,11 @@
                           </div>
                           <div>
                               <label for="guardian_relation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Relation*</label>
-                              <select id="guardian_relation" name="guardian_relation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
-                                  <option value="father">Father</option>
-                                  <option value="mother">Mother</option>
-                                  <option value="uncle">Uncle</option>
-                                  <option value="aunt">Aunt</option>
+                              <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                                  <option>Father</option>
+                                  <option>Mother</option>
+                                  <option>Uncle</option>
+                                  <option>Aunt</option>
                                   </select>
                           </div>
                           <div>
@@ -130,15 +129,12 @@
                           </div>
                       </button>
                     </div>
-                    
-          
+              
                 </form>
             </div>
           </div>
     </div>
 </section>
-
-
 
 @endsection
 
@@ -146,44 +142,77 @@
 @push('script')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    const marital_status = document.getElementById('marital_status');
-    const spouse_family_info = document.getElementById('spouse_family_info');
-    const is_minor = document.getElementById('is_minor');
-    const guardian_info = document.getElementById('guardian_info');
+        const marital_status = document.getElementById('marital_status');
+        const spouse_family_info = document.getElementById('spouse_family_info');
+        const is_minor = document.getElementById('is_minor');
+        const guardian_info = document.getElementById('guardian_info');
 
-    spouse_family_info.style.display = 'none';
-    guardian_info.style.display = 'none';
+        const spouse_name = document.getElementById('spouse_name');
+        const father_in_law_name = document.getElementById('father_in_law_name');
+        const mother_in_law_name = document.getElementById('mother_in_law_name');
+        const son_name = document.getElementById('son_name');
+        const daughter_name = document.getElementById('daughter_name');
+        const guardian_name = document.getElementById('guardian_name');
+        const guardian_relation = document.getElementById('guardian_relation');
+        const guardian_mobile = document.getElementById('guardian_mobile');
+        const guardian_email = document.getElementById('guardian_email');
 
-    marital_status.addEventListener('change', function() {
-        if (marital_status.value === 'yes') {
-            spouse_family_info.style.display = 'block';
-            is_minor.value = "no";
-            guardian_info.style.display = 'none';
-        } else {
-            spouse_family_info.style.display = 'none';
-            // Reset spouse-related fields
-            document.getElementById('spouse_name').value = '';
-            document.getElementById('father_in_law_name').value = '';
-            document.getElementById('mother_in_law_name').value = '';
-            document.getElementById('son_name').value = '';
-            document.getElementById('daughter_name').value = '';
-        }
+        // Initially hide spouse_family_info and guardian_info
+        spouse_family_info.style.display = 'none';
+        guardian_info.style.display = 'none';
+
+        marital_status.addEventListener('change', function() {
+            if (marital_status.value === 'yes') {
+                spouse_family_info.style.display = 'block';
+                is_minor.value = "no";
+                guardian_info.style.display = 'none';
+
+                if (spouse_name) spouse_name.required = true;
+                if (father_in_law_name) father_in_law_name.required = true;
+                if (mother_in_law_name) mother_in_law_name.required = true;
+                if (son_name) son_name.required = true;
+                if (daughter_name) daughter_name.required = true;
+
+                if (guardian_name) guardian_name.required = false;
+                if (guardian_relation) guardian_relation.required = false;
+                if (guardian_mobile) guardian_mobile.required = false;
+                if (guardian_email) guardian_email.required = false;
+            } else {
+                spouse_family_info.style.display = 'none';
+
+                if (spouse_name) spouse_name.required = false;
+                if (father_in_law_name) father_in_law_name.required = false;
+                if (mother_in_law_name) mother_in_law_name.required = false;
+                if (son_name) son_name.required = false;
+                if (daughter_name) daughter_name.required = false;
+            }
+        });
+
+        is_minor.addEventListener('change', function() {
+            if (is_minor.value === 'yes') {
+                guardian_info.style.display = 'block';
+                marital_status.value = "no";
+                spouse_family_info.style.display = 'none';
+
+                if (guardian_name) guardian_name.required = true;
+                if (guardian_relation) guardian_relation.required = true;
+                if (guardian_mobile) guardian_mobile.required = true;
+                if (guardian_email) guardian_email.required = true;
+
+                if (spouse_name) spouse_name.required = false;
+                if (father_in_law_name) father_in_law_name.required = false;
+                if (mother_in_law_name) mother_in_law_name.required = false;
+                if (son_name) son_name.required = false;
+                if (daughter_name) daughter_name.required = false;
+            } else {
+                guardian_info.style.display = 'none';
+
+                if (guardian_name) guardian_name.required = false;
+                if (guardian_relation) guardian_relation.required = false;
+                if (guardian_mobile) guardian_mobile.required = false;
+                if (guardian_email) guardian_email.required = false;
+            }
+        });
     });
-
-    is_minor.addEventListener('change', function() {
-        if (is_minor.value === 'yes') {
-            guardian_info.style.display = 'block';
-            marital_status.value = "no";
-            spouse_family_info.style.display = 'none';
-        } else {
-            guardian_info.style.display = 'none';
-            // Reset guardian-related fields
-            document.getElementById('guardian_name').value = '';
-            document.getElementById('guardian_mobile').value = '';
-            document.getElementById('guardian_email').value = '';
-        }
-    });
-});
-
 </script>
 @endpush

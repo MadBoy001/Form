@@ -61,33 +61,8 @@
                 
                 <div class="grid md:grid-cols-3 md:gap-6">
 
-                    {{-- <div>
-                        <label for="client_dob_ad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DOB AD</label>
-                        <div class="relative max-w-sm">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                </svg>
-                            </div>
-                            <input id="client_dob_ad" datepicker datepicker-autohide  name="client_dob_ad" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="client_dob_bs" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DOB BS</label>
-                        <div class="relative max-w-sm">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                </svg>
-                            </div>
-                            <input datepicker id="client_dob_bs" name="client_dob_bs" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
-                        </div>
-                    </div> --}}
-
-                    <!-- English Datepicker for AD -->
                         <div>
-                            <label for="client_dob_ad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DOB AD</label>
+                            <label for="client_dob_ad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DOB AD*</label>
                             <div class="relative max-w-sm">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -98,9 +73,8 @@
                             </div>
                         </div>
 
-                        <!-- Nepali Datepicker for BS -->
                         <div>
-                            <label for="client_dob_bs" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DOB BS (Nepali)</label>
+                            <label for="client_dob_bs" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DOB BS*</label>
                             <div class="relative max-w-sm">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -122,11 +96,11 @@
                 <div class="grid md:grid-cols-4 md:gap-6">
 
                     <div>
-                        <label for="client_ctzn_num" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Citizenship Number</label>
+                        <label for="client_ctzn_num" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Citizenship Number*</label>
                         <input type="text" name="client_ctzn_num" id="client_ctzn_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required="">
                     </div>
                     <div>
-                        <label for="client_ctzn_district" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Citizenship Issue District</label>
+                        <label for="client_ctzn_district" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Citizenship Issue District*</label>
                         <select id="client_ctzn_district" name="client_ctzn_district" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="">Select</option>
                             @foreach (config('data.districts') as $district)
@@ -135,9 +109,8 @@
                             </select>
                     </div>
 
-
                     <div>
-                        <label for="client_ctn_bs" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Citizenship Issue Date BS</label>
+                        <label for="client_ctn_bs" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Citizenship Issue Date BS*</label>
                         <div class="relative max-w-sm">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -148,9 +121,8 @@
                         </div>
                     </div>
 
-                    <!-- Nepali Datepicker for BS -->
                     <div>
-                        <label for="client_ctn_ad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Citizenship Issue Date AD</label>
+                        <label for="client_ctn_ad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Citizenship Issue Date AD*</label>
                         <div class="relative max-w-sm">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -161,32 +133,6 @@
                             <input id="nepali-datepicker1" datepicker-np name="client_ctn_ad" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full pl-10 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
                         </div>
                     </div>
-
-
-                    {{-- <div>
-                        <label for="client_ctn_bs" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Citizenship Issue Date BS</label>
-                        <div class="relative max-w-sm">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                </svg>
-                            </div>
-                            <input datepicker id="default-datepicker" name="client_ctn_bs" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="client_ctn_ad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Citizenship Issue Date AD</label>
-                            <div class="relative max-w-sm">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                    </svg>
-                                </div>
-                                <input id="datepicker-autohide" name="client_ctn_ad" datepicker datepicker-autohide type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
-                            </div>  
-                    </div> --}}
-
                 </div>
 
 
@@ -202,18 +148,16 @@
                     </div>
                     <div>
                         <label for="boid" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Boid</label>
-                        <input type="text" name="boid" id="boid" value="130"
+                        <input type="text" name="boid" id="boid"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                             {{-- placeholder="130XXXXXXXXXXXXXX" 
                             pattern="130[0-9]{13}" 
                             title="Must start with 130 and have exactly 16 characters." 
                             minlength="16" 
                             maxlength="16"  --}}
-                            required>
+                            >
                         <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Must start with 130 and have exactly 16 characters.</p>
                     </div>
-                    
-                    
                     
                 </div>
 

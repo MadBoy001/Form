@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('client_tole');
             $table->string('client_landline')->nullable();
 
+            $table->enum('current_address_different', ['yes', 'no']);
+
             $table->string('current_country');
             $table->string('current_province');
             $table->string('current_district');

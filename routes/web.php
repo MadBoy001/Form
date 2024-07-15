@@ -49,8 +49,17 @@ Route::post('/occupation', [KYCFormController::class, 'occupationStore'])->name(
 Route::get('/bank', [KYCFormController::class, 'bank'])->name('bank');
 Route::post('/bank', [KYCFormController::class, 'bankStore'])->name('bank-store');
 
-Route::get('/document', [KYCFormController::class, 'document'])->name('document');
-Route::post('/document', [KYCFormController::class, 'documentStore'])->name('document-store');
+Route::get('/pep', [KYCFormController::class, 'pep'])->name('pep');
+Route::post('/pep', [KYCFormController::class, 'pepStore'])->name('pep-store');
+
+Route::get('/terms', [KYCFormController::class, 'terms'])->name('terms');
+Route::post('/terms', [KYCFormController::class, 'termsStore'])->name('terms-store');
+
+Route::get('/document', [KYCFormController::class, 'refer'])->name('refer');
+Route::post('/document', [KYCFormController::class, 'referStore'])->name('refer-store');
+
+Route::get('/refer', [KYCFormController::class, 'refer'])->name('document');
+Route::post('/refer', [KYCFormController::class, 'documentStore'])->name('document-store');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

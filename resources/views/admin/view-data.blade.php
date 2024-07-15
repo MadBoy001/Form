@@ -187,8 +187,8 @@
         
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <div>
-                            <label for="maritial_status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Maritial Status*</label>
-                            <select id="maritial_status" name="maritial_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <label for="marital_status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">marital Status*</label>
+                            <select id="marital_status" name="marital_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option value="no">No</option>
                                 <option value="yes">Yes</option>
                                 </select>
@@ -232,8 +232,8 @@
                     <div class="guardian_info" id="guardian_info">
                     <div class="grid md:grid-cols-3 md:gap-6">
                         <div>
-                            <label for="guradian_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of Guardian*</label>
-                            <input type="text" name="guradian_name" id="guradian_name" disabled value="{{$family->guradian_name}}" class="mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" >
+                            <label for="guardian_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of Guardian*</label>
+                            <input type="text" name="guardian_name" id="guardian_name" disabled value="{{$family->guardian_name}}" class="mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" >
                         </div>
                         <div>
                             <label for="guardian_relation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Relation*</label>
@@ -565,78 +565,76 @@
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 p-10">
                 <!-- Card 1 -->
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <div class="">
-                        <img class="rounded-t-lg" src="{{ asset($document->passport_image) }}" alt="" />
-                        <h5 class="mp-5 text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
-                            Passport Image
-                        </h5>
+                    <div class="overflow-hidden h-60">
+                        <img class="rounded-t-lg w-full h-full object-cover" src="{{ asset($document->passport_image) }}" alt="Passport Image" />
                     </div>
+                    <h5 class="text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
+                        Passport Image
+                    </h5>
                 </div>
-
-                <!-- Card 1 -->
+        
+                <!-- Card 2 -->
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <div class="">
-                        <img class="rounded-t-lg" src="{{ asset($document->holding_selfie_image) }}" alt="" />
-                        <h5 class="mp-5 text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
-                            Selfie Holding Sumeru
-                        </h5>
+                    <div class="overflow-hidden h-60">
+                        <img class="rounded-t-lg w-full h-full object-cover" src="{{ asset($document->holding_selfie_image) }}" alt="Selfie Holding Sumeru" />
                     </div>
+                    <h5 class="text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
+                        Selfie Holding Sumeru
+                    </h5>
                 </div>
-
-                <!-- Card 1 -->
+        
+                <!-- Card 3 -->
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <div class="">
-                        <img class="rounded-t-lg" src="{{ asset($document->citizenship_front_image) }}" alt="" />
-                        <h5 class="mp-5 text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
-                            Citizenship Frontside
-                        </h5>
+                    <div class="overflow-hidden h-60">
+                        <img class="rounded-t-lg w-full h-full object-cover" src="{{ asset($document->citizenship_front_image) }}" alt="Citizenship Frontside" />
                     </div>
+                    <h5 class="text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
+                        Citizenship Frontside
+                    </h5>
                 </div>
-
-                <!-- Card 1 -->
+        
+                <!-- Card 4 -->
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <div class="">
-                        <img class="rounded-t-lg" src="{{ asset($document->citizenship_back_image) }}" alt="" />
-                        <h5 class="mp-5 text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
-                            Citizenship Backside
-                        </h5>
+                    <div class="overflow-hidden h-60">
+                        <img class="rounded-t-lg w-full h-full object-cover" src="{{ asset($document->citizenship_back_image) }}" alt="Citizenship Backside" />
                     </div>
+                    <h5 class="text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
+                        Citizenship Backside
+                    </h5>
                 </div>
-
-                <!-- Card 1 -->
+        
+                <!-- Card 5 -->
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <div class="">
-                        <img class="rounded-t-lg" src="{{ asset($document->signature_image) }}" alt="" />
-                        <h5 class="mp-5 text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
-                            Signature
-                        </h5>
+                    <div class="overflow-hidden h-60">
+                        <img class="rounded-t-lg w-full h-full object-cover" src="{{ asset($document->signature_image) }}" alt="Signature" />
                     </div>
+                    <h5 class="text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
+                        Signature
+                    </h5>
                 </div>
-
-                <!-- Card 1 -->
+        
+                <!-- Card 6 -->
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <div class="">
-                        <img class="rounded-t-lg" src="{{ asset($document->thumb_image) }}" alt="" />
-                        <h5 class="mp-5 text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
-                            Thumb Prints
-                        </h5>
+                    <div class="overflow-hidden h-60">
+                        <img class="rounded-t-lg w-full h-full object-cover" src="{{ asset($document->thumb_image) }}" alt="Thumb Prints" />
                     </div>
+                    <h5 class="text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
+                        Thumb Prints
+                    </h5>
                 </div>
-
-                <!-- Card 1 -->
+        
+                <!-- Card 7 -->
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <div class="">
-                        <img class="rounded-t-lg" src="{{ asset($document->map_image) }}" alt="" />
-                        <h5 class="mp-5 text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
-                            House Map
-                        </h5>
+                    <div class="overflow-hidden h-60">
+                        <img class="rounded-t-lg w-full h-full object-cover" src="{{ asset($document->map_image) }}" alt="House Map" />
                     </div>
+                    <h5 class="text-2xl m-5 font-bold tracking-tight text-gray-900 dark:text-white">
+                        House Map
+                    </h5>
                 </div>
-                
-                
-
             </div>
         </div>
+        
 
 
     </div>
@@ -650,7 +648,7 @@
         const spouseFamilyInfo = document.getElementById('spouse_family_info');
         const guardianInfo = document.getElementById('guardian_info');
 
-        @if($family->maritial_status === "no")
+        @if($family->marital_status === "no")
             if (spouseFamilyInfo) {
                 spouseFamilyInfo.style.display = 'none';
             }

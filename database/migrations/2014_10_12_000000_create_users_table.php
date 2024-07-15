@@ -35,7 +35,8 @@ return new class extends Migration
             $table->string('boid')->nullable();
 
             $table->enum('role', ['admin', 'user'])->default('user');
-            $table->enum('status', ['active', 'inactive'])->default('inactive');
+            $table->enum('status', ['complete', 'incomplete'])->default('incomplete');
+            $table->enum('approval', ['approved', 'pending'])->default('pending');
 
 
             $table->timestamp('email_verified_at')->nullable();

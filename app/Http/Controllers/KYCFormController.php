@@ -59,7 +59,7 @@ class KYCFormController extends Controller
         $user->client_dob_ad = Carbon::createFromFormat('d/m/Y', $request->client_dob_ad)->format('Y-m-d');
         // $user->client_dob_bs = $request->client_dob_bs;
         $user->client_dob_bs = Carbon::createFromFormat('d/m/Y', $request->client_dob_bs)->format('Y-m-d');
-        
+
         $user->client_nationality = "nepalese";
         $user->client_ctzn_num = $request->client_ctzn_num;
         $user->client_ctzn_district = $request->client_ctzn_district;
@@ -88,49 +88,49 @@ class KYCFormController extends Controller
     }
     public function familyStore(Request $request)
     {
-        // dd($request->all());
+        // Validate the input
         $request->validate([
-
             'father_name' => ['required', 'string'],
             'mother_name' => ['required', 'string'],
             'grandfather_name' => ['required', 'string'],
 
-            'maritial_status' => ['required', 'string'],
-            'is_minor' => ['required', 'string'],
+            'marital_status' => ['required', 'in:yes,no'],
+            'is_minor' => ['required', 'in:yes,no'],
 
-            // 'spouse_name' => ['string'],
-            // 'father_in_law_name' => ['string'],
-            // 'mother_in_law_name' => ['string'],
-            // 'son_name' => ['string'],
-            // 'daughter_name' => ['string'],
+            'spouse_name' => ['required_if:marital_status,yes'],
+            'father_in_law_name' => ['required_if:marital_status,yes'],
+            'mother_in_law_name' => ['required_if:marital_status,yes'],
+            'son_name' => ['required_if:marital_status,yes'],
+            'daughter_name' => ['required_if:marital_status,yes'],
 
-            // 'guradian_name' => ['string'],
-            // 'guardian_relation' => ['string'],
-            // 'guardian_mobile' => ['string'],
-            // 'guardian_email' => ['string'],
-
+            'guardian_name' => ['required_if:is_minor,yes'],
+            'guardian_relation' => ['required_if:is_minor,yes'],
+            'guardian_mobile' => ['required_if:is_minor,yes'],
+            'guardian_email' => ['required_if:is_minor,yes', 'email'],
         ]);
 
         $family = new Family();
         $uid = session('uid');
 
-        $family->uid = $uid; // NOT CHECKED
+        $family->uid = $uid; // Ensure this is set correctly
         $family->father_name = $request->father_name;
         $family->mother_name = $request->mother_name;
         $family->grandfather_name = $request->grandfather_name;
-        $family->maritial_status = $request->maritial_status;
+        $family->marital_status = $request->marital_status;
         $family->is_minor = $request->is_minor;
 
-
-        if ($request->maritial_status !== "yes") {
+        // Update conditions based on marital status
+        if ($request->marital_status === "yes") {
             $family->spouse_name = $request->spouse_name;
             $family->father_in_law_name = $request->father_in_law_name;
             $family->mother_in_law_name = $request->mother_in_law_name;
             $family->son_name = $request->son_name;
+            $family->daughter_name = $request->daughter_name;
         }
 
-        if ($request->is_minor !== "yes") {
-            $family->guradian_name = $request->guradian_name;
+        // Update conditions based on is_minor status
+        if ($request->is_minor === "yes") {
+            $family->guardian_name = $request->guardian_name;
             $family->guardian_relation = $request->guardian_relation;
             $family->guardian_mobile = $request->guardian_mobile;
             $family->guardian_email = $request->guardian_email;
@@ -138,13 +138,10 @@ class KYCFormController extends Controller
 
         $family->save();
 
-        // $request->session()->put('uid', $user->id);
-
         toastr()->success('User Created!');
 
         return redirect()->route('address');
     }
-
     public function address()
     {
         return view('pages.address');
@@ -154,59 +151,64 @@ class KYCFormController extends Controller
     {
         // dd($request->all());
         // Validate the request data
-    $request->validate([
-        'client_country' => 'required|string|max:255',
-        'client_province' => 'required|string|max:255',
-        'client_district' => 'required|string|max:255',
-        'client_municipality' => 'required|string|max:255',
-        'client_ward' => 'required|integer',
-        'client_tole' => 'required|string|max:255',
-        'client_landline' => 'required|string|max:20',
-        'current_country' => 'nullable|string|max:255',
-        'current_province' => 'nullable|string|max:255',
-        'current_district' => 'nullable|string|max:255',
-        'current_municipality' => 'nullable|string|max:255',
-        'current_ward' => 'nullable|integer',
-        'current_tole' => 'nullable|string|max:255',
-        'current_landline' => 'nullable|string|max:20',
-    ]);
+        $request->validate([
+            'client_country' => 'required|string|max:255',
+            'client_province' => 'required|string|max:255',
+            'client_district' => 'required|string|max:255',
+            'client_municipality' => 'required|string|max:255',
+            'client_ward' => 'required|integer',
+            'client_tole' => 'required|string|max:255',
+            'client_landline' => 'required|string|max:20',
 
-    $uid = session('uid');
+            'current_country' => 'nullable|string|max:255',
+            'current_province' => 'nullable|string|max:255',
+            'current_district' => 'nullable|string|max:255',
+            'current_municipality' => 'nullable|string|max:255',
+            'current_ward' => 'nullable|integer',
+            'current_tole' => 'nullable|string|max:255',
+            'current_landline' => 'nullable|string|max:20',
+        ]);
 
-    // Save the permanent address
-    $address = new Address();
-    $address->uid = $uid; // NOT CHECKED
+        $uid = session('uid');
 
-    $address->client_country = $request->client_country;
-    $address->client_province = $request->client_province;
-    $address->client_district = $request->client_district;
-    $address->client_municipality = $request->client_municipality;
-    $address->client_ward = $request->client_ward;
-    $address->client_tole = $request->client_tole;
-    $address->client_landline = $request->client_landline;
+        // Save the permanent address
+        $address = new Address();
+        $address->uid = $uid; // NOT CHECKED
 
-    // Save the current address if the checkbox is checked
-    if ($request->has('checkbox-1')) {
-        $address->current_country = $request->current_country;
-        $address->current_province = $request->current_province;
-        $address->current_district = $request->current_district;
-        $address->current_municipality = $request->current_municipality;
-        $address->current_ward = $request->current_ward;
-        $address->current_tole = $request->current_tole;
-        $address->current_landline = $request->current_landline;
-    } else {
-        $address->current_country = $request->client_country;
-        $address->current_province = $request->client_province;
-        $address->current_district = $request->client_district;
-        $address->current_municipality = $request->client_municipality;
-        $address->current_ward = $request->client_ward;
-        $address->current_tole = $request->client_tole;
-        $address->current_landline = $request->client_landline;
-    }
-    
-    $address->save();
-    // Redirect to the occupation page
-    return redirect()->route('occupation');
+        $address->client_country = $request->client_country;
+        $address->client_province = $request->client_province;
+        $address->client_district = $request->client_district;
+        $address->client_municipality = $request->client_municipality;
+        $address->client_ward = $request->client_ward;
+        $address->client_tole = $request->client_tole;
+        $address->client_landline = $request->client_landline;
+
+        // Save the current address if the checkbox is checked
+        if ($request->current_address_different === "1") {
+            $address->current_country = $request->current_country;
+            $address->current_province = $request->current_province;
+            $address->current_district = $request->current_district;
+            $address->current_municipality = $request->current_municipality;
+            $address->current_ward = $request->current_ward;
+            $address->current_tole = $request->current_tole;
+            $address->current_landline = $request->current_landline;
+
+            $address->current_address_different = "yes";
+        } else {
+            $address->current_country = $request->client_country;
+            $address->current_province = $request->client_province;
+            $address->current_district = $request->client_district;
+            $address->current_municipality = $request->client_municipality;
+            $address->current_ward = $request->client_ward;
+            $address->current_tole = $request->client_tole;
+            $address->current_landline = $request->client_landline;
+
+            $address->current_address_different = "no";
+        }
+
+        $address->save();
+        // Redirect to the occupation page
+        return redirect()->route('occupation');
     }
 
     public function occupation()
@@ -215,49 +217,49 @@ class KYCFormController extends Controller
     }
 
     public function occupationStore(Request $request)
-{
-    // dd($request->all());
-    // Validate the form fields
-    $request->validate([
-        'occupation' => ['required'],
-        'business_type' => ['required_if:occupation,business'],
-        'organization_name' => ['required'],
-        'organization_address' => ['required'],
-        'designation' => ['required'],
-        'employee_id' => ['required'],
-        'income_range' => ['required'],
-        'other_involvement' => ['required'],
-        'other_organisation' => ['required_if:other_involvement,yes'],
-        'other_designation' => ['required_if:other_involvement,yes']
-    ]);
+    {
+        // dd($request->all());
+        // Validate the form fields
+        $request->validate([
+            'occupation' => ['required'],
+            'business_type' => ['required_if:occupation,business'],
+            'organization_name' => ['required'],
+            'organization_address' => ['required'],
+            'designation' => ['required'],
+            'employee_id' => ['required'],
+            'income_range' => ['required'],
+            'other_involvement' => ['required'],
+            'other_organisation' => ['required_if:other_involvement,yes'],
+            'other_designation' => ['required_if:other_involvement,yes']
+        ]);
 
-    // Create a new instance of the model
-    $occupation = new Occupation(); // Replace 'Occupation' with the correct model name if different
-    $uid = session('uid');
+        // Create a new instance of the model
+        $occupation = new Occupation(); // Replace 'Occupation' with the correct model name if different
+        $uid = session('uid');
 
-    // Assign the validated values to the model's attributes
-    $occupation->uid = $uid;
-    $occupation->occupation = $request->occupation;
-    $occupation->business_type = $request->business_type;
-    $occupation->organization_name = $request->organization_name;
-    $occupation->organization_address = $request->organization_address;
-    $occupation->designation = $request->designation;
-    $occupation->employee_id = $request->employee_id;
-    $occupation->income_range = $request->income_range;
-    $occupation->other_involvement = $request->other_involvement;
-    if($request->other_involvement === "yes"){
-        $occupation->other_organisation = $request->other_organisation;
-        $occupation->other_designation = $request->other_designation;
+        // Assign the validated values to the model's attributes
+        $occupation->uid = $uid;
+        $occupation->occupation = $request->occupation;
+        $occupation->business_type = $request->business_type;
+        $occupation->organization_name = $request->organization_name;
+        $occupation->organization_address = $request->organization_address;
+        $occupation->designation = $request->designation;
+        $occupation->employee_id = $request->employee_id;
+        $occupation->income_range = $request->income_range;
+        $occupation->other_involvement = $request->other_involvement;
+        if ($request->other_involvement === "yes") {
+            $occupation->other_organisation = $request->other_organisation;
+            $occupation->other_designation = $request->other_designation;
+        }
+
+        // Save the model to the database
+        $occupation->save();
+
+        // Redirect to the next step with a success message
+        toastr()->success('Occupation info added');
+
+        return redirect()->route('bank');
     }
-
-    // Save the model to the database
-    $occupation->save();
-
-    // Redirect to the next step with a success message
-    toastr()->success('Occupation info added');
-
-    return redirect()->route('bank');
-}
 
     public function bank()
     {
@@ -268,12 +270,10 @@ class KYCFormController extends Controller
     {
         // dd($request->all());
         $request->validate([
-
             'account_type' => ['required'],
             'account_num' => ['required', 'string'],
             'bank_name' => ['required'],
             'bank_branch' => ['required', 'string'],
-
         ]);
 
         $bank = new Bank();
@@ -287,9 +287,60 @@ class KYCFormController extends Controller
 
         $bank->save();
 
-        // $request->session()->put('uid', $user->id);
-
         toastr()->success('Bank Info Added');
+
+        return redirect()->route('pep');
+    }
+    
+    public function pep()
+    {
+        return view('pages.pep');
+    }
+    
+    public function pepStore(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'account_type' => ['required'],
+        ]);
+
+        $bank = new Bank();
+        $uid = session('uid');
+
+        $bank->uid = $uid; 
+        $bank->account_type = $request->account_type;
+
+        $bank->save();
+
+        toastr()->success('Pep Info Added');
+
+        return redirect()->route('refer');
+    }
+    
+    public function refer()
+    {
+        return view('pages.refer');
+    }
+
+    public function referStore(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+
+            'account_type' => ['required'],
+
+        ]);
+
+        $bank = new Bank();
+        $uid = session('uid');
+
+        $bank->uid = $uid; 
+        $bank->account_type = $request->account_type;
+
+
+        $bank->save();
+
+        toastr()->success('Pep Info Added');
 
         return redirect()->route('document');
     }
@@ -350,20 +401,20 @@ class KYCFormController extends Controller
 
         toastr('Created Successfully!', 'success');
 
+        return redirect()->route('terms');
+    }
+    
+    public function terms()
+    {
+        return view('pages.terms');
+    }
+
+    public function termsStore(Request $request)
+    {
         return redirect()->route('personal-information');
     }
 
-    public function data(UserDataTable $dataTable){
-        return $dataTable->render('data');
-    }
 
-    public function view(String $id){
-        $user = User::findOrFail($id);
-        $family = Family::findOrFail($id);
-        $address = Address::findOrFail($id);
-        $bank = Bank::findOrFail($id);
-        $occupation = Occupation::findOrFail($id);
-        $document = Document::findOrFail($id);
-        return view('view-data', compact('user', 'family', 'address', 'bank', 'occupation', 'document'));
-    }
+
 }
+

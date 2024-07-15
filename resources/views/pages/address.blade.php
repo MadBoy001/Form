@@ -68,8 +68,8 @@
                     </div>
                     
                     <div class="flex items-center mb-4">
-                        <input name="current_address_different" id="checkbox-1" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Is Your Current Address Different From Permanent Address?</label>
+                        <input name="current_address_different" id="current_address_different" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="current_address_different" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Is Your Current Address Different From Permanent Address?</label>
                     </div>
                     
                     
@@ -154,7 +154,7 @@
                                   </svg>                      
                             </div>
                         </button>
-                      </div>
+                    </div>
                     
                 </form>
             </div>
@@ -171,7 +171,7 @@
 @push('script')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const checkbox = document.getElementById('checkbox-1');
+        const checkbox = document.getElementById('current_address_different');
         const currentAddressSection = document.getElementById('current-address-section');
     
         // Function to toggle current address section
